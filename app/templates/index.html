@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Pyinstaller</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+</head>
+<body>
+    <!--Conteudo principal da pagina-->
+    <div id="content">
+        <img id="logo" src="../static/assets/logo.png"><br>
+        <button id="inicio" onclick="window.open('')">Converta já</button><br> <!--Botao redireciona para o endpoint /config-->
+        <label id="labelIndex">Conversor livre e gratuito de projetos python para executáveis</label><br>
+    </div>
+
+    <!--rodapé-->
+    <footer>
+        <a href="https://github.com/flp-sp/Web-PyInstaller?tab=readme-ov-file">Repositorio do projeto</a>
+        <label>&nbsp;|&nbsp;</label>
+        <a href="https://pyinstaller.org/en/stable/">Site oficial do Pyinstaller</a>
+    </footer>
+</body>
+</html>
