@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/config.css')}}">
+</head>
+<body>
+    <div id="content">
+        <img id="logo" src="../static/assets/logo.png"><br>
+        <form action="{{url_for('config')}}" method="post">
+            <input type="text" id="repositorio" placeholder="Insira o link do repositório" name="repositorio"><br><!--input do link do repositorio-->
+
+            <!--selectbox para escolher as plataformas para converter-->
+            <label id="labelSelect" for="selectPlataform">Selecione a plataforma desejada:</label>
+            <div id="selectPlataform">
+                <input type="checkbox" id="cLinux" name="cLinux" value="Linux">
+                <label for="cLinux">Linux</label>
+                <input type="checkbox" id="cWindows" name="cWindows" value="Windows">
+                <label for="cWindows">Windows</label>
+                <input type="checkbox" id="cAlpine" name="cAlpine" value="Alpine">
+                <label for="cAlpine">Alpine</label>
+            </div>
+            <br>
+            <button type="submit">Converter</button>
+        </form>
+    </div>
+    <!--rodapé-->
+    <footer>
+        <a href="https://github.com/flp-sp/Web-PyInstaller?tab=readme-ov-file">Repositorio do projeto</a>
+        <label>&nbsp;|&nbsp;</label>
+        <a href="https://pyinstaller.org/en/stable/">Site oficial do Pyinstaller</a>
+    </footer>
+</body>
+</html>
