@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, send_from_directory
 from git import Repo
 import requests
 import docker
+import shutil
+import os
 from core.methods import limpar_src
 
 from main import app
@@ -45,13 +47,22 @@ def convert():
     single_env = ", ".join(env_platforms) # env PLATAFORMS em uma string pronta para bash
 
     cliente = docker.from_env()
+
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    src_path = os.path.join(BASE_DIR, "src")
+
     cliente.containers.run("fydeinc/pyinstaller", 
                                 command="main.py", 
-                                volumes={'/home/flp-sp/Projects/webpyinstaller/app/src' : {'bind' : '/src', 'mode' : 'rw'}}, 
+                                volumes={src_path : {'bind' : '/src', 'mode' : 'rw'}}, 
                                 environment=[f"PLATFORMS={single_env}"])
     
     res = requests.get(request.host_url + url_for('convert')).status_code
     if res == 200:
-        return "download"
-
+        return redirect(url_for('download'))
     return render_template("convert.html")
+
+@app.route("/download")
+def download():
+    folder_path = './src/dist'
+    shutil.make_archive('./src/dist', 'zip', folder_path)
+    return send_from_directory('./src', 'dist.zip', as_attachment=True)
