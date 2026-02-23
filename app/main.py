@@ -6,4 +6,4 @@ app.secret_key = "1234" # talvez mudar
 from routes import *
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host="0.0.0.0", port="8801")
