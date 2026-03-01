@@ -54,7 +54,8 @@ def convert():
     cliente.containers.run("fydeinc/pyinstaller", 
                                 command="main.py", 
                                 volumes={src_path : {'bind' : '/src', 'mode' : 'rw'}}, 
-                                environment=[f"PLATFORMS={single_env}"])
+                                environment=[f"PLATFORMS={single_env}"],
+                                remove=True)
     
     res = requests.get(request.host_url + url_for('convert')).status_code
     if res == 200:
